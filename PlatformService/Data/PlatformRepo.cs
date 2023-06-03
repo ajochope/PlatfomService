@@ -23,10 +23,17 @@ namespace PlatformService.Data
         {
             return _context.Platforms.ToList();
         }
+
         public Platform GetPlatformById(int id)
         {
-            return _context.Platforms.FirstOrDefault(p => p.Id == id);
+            var platform = _context.Platforms.FirstOrDefault(p => p.Id == id);
+            if (platform == null)
+            {
+                throw new ArgumentException($"Platform with ID {id} not found.");
+            }
+            return platform;
         }
+        
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
