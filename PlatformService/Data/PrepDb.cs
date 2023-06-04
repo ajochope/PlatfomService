@@ -10,7 +10,7 @@ namespace PlatformService.Data
             {
                 using (var serviceScope = app.ApplicationServices.CreateScope())
                 {
-                    SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>());
+                    SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>()!);
                 }
             }
             catch (Exception ex)
