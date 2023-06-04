@@ -4,16 +4,16 @@ using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
 
-namespace PlatformService.Controllers
+namespace PlatformsService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PlatformController : ControllerBase
+    public class PlatformsController : ControllerBase
     {
         private readonly IPlatformRepo _repository;
         private readonly IMapper _mapper;
 
-        public PlatformController(IPlatformRepo repository, IMapper mapper)
+        public PlatformsController(IPlatformRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
