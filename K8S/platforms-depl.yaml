@@ -17,4 +17,4 @@ spec:
       containers:
         - name: platformservice
           image: ajochope/platformservice:latest
- 
+---
