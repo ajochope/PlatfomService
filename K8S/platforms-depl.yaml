@@ -18,3 +18,15 @@ spec:
         - name: platformservice
           image: ajochope/platformservice:latest
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platforms-cluterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: platformservice
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
