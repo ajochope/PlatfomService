@@ -5,13 +5,19 @@ using SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// SQL Server DB Connection
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
-
-// InMemory Server DB Connection
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("Inmemory"));
+if(builder.Environment.IsProduction())
+{
+    // Add services to the container.
+    // SQL Server DB Connection
+    Console.WriteLine("--> Usando SQL Server DB");
+    builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")));
+} 
+else 
+{
+    // InMemory Server DB Connection
+    Console.WriteLine("--> Usando Inmemory DB");
+    builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("Inmemory"));
+}
 
 // Add services to the container.
 
@@ -32,6 +38,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
 }
 
 // app.UseHttpsRedirection();
